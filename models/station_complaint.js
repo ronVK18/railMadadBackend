@@ -5,7 +5,10 @@ const station_complain = new mongoose.Schema({
     required: true,
     type: String
   },
-  
+  status:{
+    type: String,
+    default: "Pending"
+  },
   date: {
     required: true,
     type: String,

@@ -36,5 +36,28 @@ station_complaint_router.get('/api/get_station_complaint/:departname', async fun
         })
     }
 })
+station_complaint_router.get('/api/change_status_sc/:id', async function (req, res) {
+    try {
+        const complaint_to_change = await station_complaint.updateOne({ _id: req.params.id }, { status: "Resolved" })
+        .then(() => {
+            console.log('Document updated successfully');
+        })
+            .catch(err => {
+                console.error('Error updating document:', err);
+            });
+        // complaint_to_change.status = "Resolved";
+        // await complaint_to_change;
+        return res.status(200).json({
+            msg: 'status changed to resolved'
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            'error': error.message,
+            'msg': 'Something went wrong'
+        })
+    }
+})
+
 
 module.exports = station_complaint_router;

@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const station_complaint_router = require('./routes/station_complaint_router')
 const train_complaint_router = require('./routes/train_complaint_router')   ;
 const app = express()
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 
@@ -10,7 +12,7 @@ app.get('/', function(req,res){
     res.send('hello world');
 })
 
-mongoose.connect("mongodb://127.0.0.1:27017/Rail_Madad").then(()=>{
+mongoose.connect("mongodb+srv://anshshriofficial:MafbZcoXh3WuhtS8@railmadad.t2amj.mongodb.net/?retryWrites=true&w=majority&appName=railMadad").then(()=>{
     console.log('connection created');
 }).catch((e)=>{
     console.log('databse connection error');
